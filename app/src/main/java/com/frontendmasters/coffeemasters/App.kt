@@ -18,18 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.frontendmasters.coffeemasters.pages.InfoPage
 import com.frontendmasters.coffeemasters.pages.MenuPage
 import com.frontendmasters.coffeemasters.pages.OrderPage
-import com.frontendmasters.coffeemasters.ui.theme.CoffeeMastersTheme
 
-@Preview
-@Composable
-fun App_Preview() {
-    CoffeeMastersTheme {
-        App()
-    }
-}
 
 @Composable
-fun App() {
+fun App(dataManager: DataManager) {
     var selectedRoute = remember {
         mutableStateOf("menu")
     }
@@ -41,9 +33,9 @@ fun App() {
         },
         content = {
           when(selectedRoute.value) {
-              Routes.MenuPage.route -> MenuPage()
+              Routes.MenuPage.route -> MenuPage(dataManager)
               Routes.OffersPage.route -> OffersPage()
-              Routes.OrderPage.route -> OrderPage()
+              Routes.OrderPage.route -> OrderPage(dataManager)
               Routes.InfoPage.route -> InfoPage()
           }
         },
